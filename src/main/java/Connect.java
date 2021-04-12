@@ -1,6 +1,6 @@
 import java.sql.*;
 
-public class Connect {
+abstract class Connect {
 
 
         String jdbcDriver;
@@ -17,7 +17,7 @@ public class Connect {
         PreparedStatement preparedStatement = null;
 
         /////////////////////////////////////////////////////////////////////////////////////////////////
-        public Connect(String jdbcDriver, String url, String username, String passworld) {
+        protected Connect(String jdbcDriver, String url, String username, String passworld) {
             this.jdbcDriver = jdbcDriver;
             this.url = url;
             this.username = username;
@@ -52,18 +52,6 @@ public class Connect {
 
         }
 
-    public void create(String tableName,String sqlString){
 
-        try {
-            rs = dbmeta.getTables(null, "APP", tableName, null);
-            if (!rs.next()) {
-                createStatement.execute(sqlString);
-                System.out.println("A "+tableName+" tábla létrehozva.");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Nem sikerült létrehozni a "+tableName+" táblát!");
-            System.out.println("" + ex);
-        }
-    }
 }
 
